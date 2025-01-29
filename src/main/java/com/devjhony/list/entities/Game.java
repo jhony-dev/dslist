@@ -2,8 +2,10 @@ package com.devjhony.list.entities;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -12,9 +14,12 @@ import jakarta.persistence.Table;
 public class Game {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
+	
+	@Column(name = "game_year")
+	private Integer year;
 	private Integer genre;
 	private String plantform;
 	private String imgUrl;
@@ -25,10 +30,11 @@ public class Game {
 		
 	}
 
-	public Game(Long id, String title, Integer genre, String plantform, String imgUrl, String shortDescription,
+	public Game(Long id, Integer year, String title, Integer genre, String plantform, String imgUrl, String shortDescription,
 			String longDescription) {
 		this.id = id;
 		this.title = title;
+		this.year = year;
 		this.genre = genre;
 		this.plantform = plantform;
 		this.imgUrl = imgUrl;
@@ -50,6 +56,15 @@ public class Game {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
 	}
 
 	public Integer getGenre() {
